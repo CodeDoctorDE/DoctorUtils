@@ -1,1 +1,1 @@
-{pull-requests}
+{pulls}

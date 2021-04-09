@@ -1,3 +1,3 @@
-## Pull requests
+### Pull requests
 
-{pull-requests}
+{pulls}

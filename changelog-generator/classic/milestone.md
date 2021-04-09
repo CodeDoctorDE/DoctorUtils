@@ -1,7 +1,6 @@
 ## {title}
 
-{description}
+> {description}
 
 {issues}
-{pull-requests}
-{next}
+{pulls}
