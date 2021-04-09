@@ -46,13 +46,13 @@ jobs:
       run: git clone https://github.com/CodeDoctorDE/DoctorUtils.git
     - run: cd DoctorUtils/changelog-generator
     - name: Run a one-line script
-      run: python main.py -o ../../CHANGELOG.md
+      run: python main.py -o ../../CHANGELOG.md LinowodCloud dev_doctor
     - name: switching from HTTPS to SSH
       run: git remote set-url origin ${{ secrets.ssh }}
     - name: check for changes
       run: git status
     - name: stage changed files
-      run: git add CHANGELOG
+      run: git add CHANGELOG.md
     - name: commit changed files
       run: git commit -m "Auto updating CHANGELOG.md"
     - name: fetch from main
