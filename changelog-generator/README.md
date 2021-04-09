@@ -59,6 +59,9 @@ jobs:
       run: git commit -m "Auto updating CHANGELOG.md"
     - name: fetch from main
       run: git fetch origin main
-    - name: push code to main
-      run: git push origin HEAD:main
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: true
 ```
