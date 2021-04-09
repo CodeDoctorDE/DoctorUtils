@@ -3,8 +3,12 @@ import json
 import argparse
 import sys
 import os
+import string
 
 
+class SafeDict(dict):
+    def __missing__(self, key):
+        return '{' + key + '}'
 def main(argv):
     parser = argparse.ArgumentParser(
         description="Generate a changelog based on commits, release tags...")
@@ -66,7 +70,7 @@ def create_issues(milestone, args, gh_session):
 
 def create_issue(issue, args):
     file = open(f"{args.theme}/issue.md")
-    output = file.read().format(title=issue["title"], link=issue["html_url"])
+    output = file.read().format_map(SafeDict(title=issue["title"], link=issue["html_url"], number=issue['number']))
     file.close()
     return output
 
@@ -83,7 +87,7 @@ def create_pulls(milestone, args, gh_session):
 
 def create_pull(pull, args):
     file = open(f"{args.theme}/pull-request.md")
-    output = file.read().format(title=pull["title"]or "", link=pull["html_url"])
+    output = file.read().format_map(SafeDict(title=pull["title"] or "", link=pull["html_url"], number=pull['number']))
     file.close()
     return output
 

@@ -1,0 +1,2 @@
+{title} ([#{number}]({link}))
+
