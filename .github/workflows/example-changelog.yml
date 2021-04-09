@@ -1,4 +1,8 @@
 name: Example changelog
+on: 
+  push:
+    branches:
+      - "main"
 jobs:
   build:
     runs-on: ubuntu-latest
