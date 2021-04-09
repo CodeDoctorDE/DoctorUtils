@@ -48,7 +48,7 @@ jobs:
     - name: Run a one-line script
       run: |
         cd DoctorUtils/changelog-generator
-        python main.py -o ../../CHANGELOG.md LinowodCloud dev_doctor
+        python main.py -o ../../CHANGELOG.md LinwoodCloud dev_doctor
     - name: switching from HTTPS to SSH
       run: git remote set-url origin ${{ secrets.ssh }}
     - name: check for changes
