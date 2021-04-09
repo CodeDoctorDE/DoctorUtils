@@ -32,3 +32,31 @@ optional arguments:
   --password client-secret, -p client-secret
                         The secret to the client-id'
 ```
+
+## GitHub Action
+
+An example for a workflow
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Clone repository
+      run: git clone https://github.com/CodeDoctorDE/DoctorUtils.git
+    - run: cd DoctorUtils/changelog-generator
+    - name: Run a one-line script
+      run: python main.py -o ../../CHANGELOG.md
+    - name: switching from HTTPS to SSH
+      run: git remote set-url origin ${{ secrets.ssh }}
+    - name: check for changes
+      run: git status
+    - name: stage changed files
+      run: git add CHANGELOG
+    - name: commit changed files
+      run: git commit -m "Auto updating CHANGELOG.md"
+    - name: fetch from main
+      run: git fetch origin main
+    - name: push code to main
+      run: git push origin HEAD:main
+```
