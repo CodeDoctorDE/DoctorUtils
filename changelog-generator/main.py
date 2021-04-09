@@ -27,7 +27,6 @@ def main(argv):
     gh_session = requests.Session()
     if args.user is not None and args.password is not None:
         gh_session.auth = (args.user, args.password)
-    print(args)
     f = open(args.output, "a")
 
     f.write(create_milestones(args, gh_session))
