@@ -26,6 +26,8 @@ def main(argv):
                         help="Add the client-id to the request to increase the rate limit'")
     parser.add_argument("--password", "-p", metavar="client-secret", default=None, type=str,
                         help="The secret to the client-id'")
+    parser.add_argument("--closed", "-c", action='store_true', default=False,
+                        help="Include all milestones to the changelog. Default it is false")
 
     args = parser.parse_args()
     gh_session = requests.Session()
@@ -39,7 +41,7 @@ def main(argv):
 
 def create_milestones(args, gh_session):
     milestones = gh_session.get(
-        f"https://api.github.com/repos/{args.owner}/{args.repo}/milestones").json()
+        f"https://api.github.com/repos/{args.owner}/{args.repo}/milestones{args.closed and '?state=all' or ''}").json()
     milestones.reverse()
     msOutput = ""
     for milestone in milestones:
